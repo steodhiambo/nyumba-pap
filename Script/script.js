@@ -130,37 +130,45 @@ function viewImage(url, title) {
     modal.show();
 }
 
+function buyMaterial(name, price) {
+    const msg = encodeURIComponent(`Hello, I'm interested in ordering ${name} - ${price}. Please provide more details.`);
+    window.open(`https://wa.me/254791582961?text=${msg}`, '_blank');
+}
+
 function viewVideo(url, title) {
     const body = document.getElementById('mediaModalBody');
     const label = document.getElementById('mediaModalLabel');
     if (!body || !label) return;
-    label.textContent = title;
-    body.innerHTML = `<div class="ratio ratio-16x9"><iframe src="${url}" frameborder="0" allowfullscreen></iframe></div>`;
+    label.textContent = title || 'Video';
+    if (url) {
+        body.innerHTML = `<div class="ratio ratio-16x9"><iframe src="${url}" frameborder="0" allowfullscreen></iframe></div>`;
+    } else {
+        body.innerHTML = '<p class="text-muted text-center py-4">No video available for this item.</p>';
+    }
     const modal = new bootstrap.Modal(document.getElementById('mediaModal'));
     modal.show();
 }
 
 function renderPropertyList() {
-    const container = document.getElementById('property-list');
+    const container = document.getElementById('vacancy-grid');
     if (!container) return;
     const properties = getData('landlordPosts', []);
-    container.innerHTML = '';
-    properties.forEach((p, index) => {
-        const card = document.createElement('div');
-        card.className = 'col-md-4';
-        card.innerHTML = `<div class="card h-100 property-card border-0 shadow-sm">
+    if (!properties.length) return;
+    properties.forEach((p) => {
+        if (container.querySelectorAll('.col-sm-6').length >= 16) return;
+        const col = document.createElement('div');
+        col.className = 'col-sm-6 col-md-4 col-lg-3';
+        col.innerHTML = `<div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-                <span class="badge ${p.type === 'Sale' ? 'bg-danger' : 'bg-success'} mb-2">${p.type}</span>
-                <h5 class="card-title fw-bold">${p.title}</h5>
-                <p class="card-text text-muted">${p.address}</p>
-                <p class="card-text">${p.price} • ${p.status}</p>
-                <p class="small text-muted">Listed on ${p.postedAt}</p>
-            </div>
-            <div class="card-footer bg-white border-0 pb-3">
-                <button class="btn btn-outline-primary btn-sm w-100" onclick="alert('Contact ${p.contact} for this property.')">View Contact</button>
+                <h5 class="card-title">${p.title}</h5>
+                <p class="card-text">${p.address} - ${p.price}</p>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-sm btn-success" target="_blank" href="https://wa.me/254791582961?text=I%20am%20interested%20in%20${encodeURIComponent(p.title)}">WhatsApp</a>
+                    <button class="btn btn-sm btn-outline-primary" onclick="alert('Contact ${p.contact}')">View Contact</button>
+                </div>
             </div>
         </div>`;
-        container.appendChild(card);
+        container.appendChild(col);
     });
 }
 
@@ -270,10 +278,10 @@ function managerInit() {
     const tenants = getData('tenantUsers', []);
     const activities = getData('activityLog', []);
     const reports = getData('managerReports', []);
-    document.getElementById('manager-post-count').textContent = posts.length;
-    document.getElementById('manager-tenant-count').textContent = tenants.length;
-    document.getElementById('manager-activity-count').textContent = activities.length;
-    document.getElementById('manager-report-count').textContent = reports.length;
+    const postEl = document.getElementById('manager-post-count');
+    const activityEl = document.getElementById('manager-activity-count');
+    if (postEl) postEl.textContent = posts.length;
+    if (activityEl) activityEl.textContent = activities.length;
     const activityList = document.getElementById('activity-log');
     if (activityList) {
         activityList.innerHTML = '';
@@ -322,21 +330,6 @@ function submitManagerReport(event) {
     showAlert(alertContainer, 'Report created and saved to the dashboard.', 'success');
     document.getElementById('manager-report-form').reset();
     managerInit();
-}
-
-function forgotPassword(event) {
-    event.preventDefault();
-    const email = document.getElementById('forgot-email').value.trim();
-    const alertContainer = document.getElementById('forgot-alert');
-    const landlordUsers = getData('landlordUsers', []);
-    const tenantUsers = getData('tenantUsers', []);
-    const found = landlordUsers.some(u => u.email.toLowerCase() === email.toLowerCase()) || tenantUsers.some(u => u.email.toLowerCase() === email.toLowerCase());
-    if (!found) {
-        showAlert(alertContainer, 'Email not found. Please check the address and try again.', 'danger');
-        return;
-    }
-    showAlert(alertContainer, 'A password reset link has been sent to your email address (simulated).', 'success');
-    document.getElementById('forgot-password-form').reset();
 }
 
 function managerLogin(event) {
@@ -514,6 +507,10 @@ function renderManagerSalesChart() {
         existingMessage.remove();
     }
     chartElement.style.display = 'block';
+    if (typeof Chart === 'undefined') {
+        chartContainer.insertAdjacentHTML('beforeend', '<p class="text-muted mb-0">Chart.js library failed to load. Sales chart unavailable.</p>');
+        return;
+    }
     const ctx = chartElement.getContext('2d');
 
     const recentSales = sales.slice(0, 8).reverse();
@@ -610,9 +607,12 @@ function managerDashboardInit() {
     const sales = getSalesRecords();
     const totalSales = sales.reduce((sum, sale) => sum + (sale.amount || 0), 0);
 
-    document.getElementById('manager-post-count').textContent = posts.length;
-    document.getElementById('manager-activity-count').textContent = activities.length;
-    document.getElementById('manager-total-sales').textContent = `KSh ${totalSales.toLocaleString()}`;
+    const postEl = document.getElementById('manager-post-count');
+    const activityEl = document.getElementById('manager-activity-count');
+    const salesEl = document.getElementById('manager-total-sales');
+    if (postEl) postEl.textContent = posts.length;
+    if (activityEl) activityEl.textContent = activities.length;
+    if (salesEl) salesEl.textContent = `KSh ${totalSales.toLocaleString()}`;
     
     const activityList = document.getElementById('activity-log');
     if (activityList) {
@@ -805,10 +805,6 @@ function initPage() {
     if (page === 'home') {
         renderHomeMaterials();
         renderPropertyList();
-        const purchaseForm = document.getElementById('purchase-form');
-        if (purchaseForm) {
-            purchaseForm.addEventListener('submit', submitPurchase);
-        }
     }
     if (page === 'landlord') {
         renderLandlordPosts();
