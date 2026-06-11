@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-page="contact">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Dabukoh Real Estate Company Ltd in Kisumu. Call 0748073803, WhatsApp 0791582961, or email info@dabukohrealestate.co.ke.">
+    <meta property="og:title" content="Contact Us | Dabukoh Real Estate">
+    <meta property="og:description" content="Get in touch with Dabukoh Real Estate in Kisumu. Call, WhatsApp, or email us.">
+    <meta property="og:type" content="website">
+    <title>Contact Us | Dabukoh Real Estate</title>
+    <link rel="stylesheet" href="Styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Dabukoh Real Estate</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContact" aria-controls="navContact" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navContact">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Accounts</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="landlord.html">Landlord Login</a></li>
+                            <li><a class="dropdown-item" href="tenant.html">Tenant Signup</a></li>
+                            <li><a class="dropdown-item" href="manager.html">Manager Dashboard</a></li>
+                            <li><a class="dropdown-item" href="accountant.html">Accountant Dashboard</a></li>
+                            <li><a class="dropdown-item" href="forgot-password.html">Forgot Password</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section text-white text-center d-flex align-items-center" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1400&q=80'); min-height: 55vh;">
+        <div class="container py-5">
+            <h1 class="display-5 fw-bold">Get in Touch</h1>
+            <p class="lead mt-3">Questions about rentals, property sales or building materials? We’re ready to help.</p>
+            <a class="btn btn-primary btn-lg mt-4" href="message.html">Send a Message</a>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <section class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Phone & WhatsApp</h5>
+                        <p class="text-muted">Call or message our support team for immediate assistance.</p>
+                        <p class="fw-bold">0748073803</p>
+                        <p class="fw-bold">0791582961</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Email</h5>
+                        <p class="text-muted">Send your enquiry and we will reply as soon as possible.</p>
+                        <p class="fw-bold">info@dabukohrealestate.co.ke</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Office</h5>
+                        <p class="text-muted">Visit our Kisumu office for property support and consultation.</p>
+                        <p class="fw-bold">Kisumu, Kenya</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Send Your Enquiry</h3>
+                        <p class="text-muted">Use the form below and we’ll respond by email or WhatsApp.</p>
+                        <form id="contact-form" onsubmit="submitContactForm(event)">
+                            <div class="mb-3">
+                                <label for="contact-name" class="form-label">Full Name</label>
+                                <input type="text" id="contact-name" class="form-control" placeholder="Your name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact-email" class="form-label">Email Address</label>
+                                <input type="email" id="contact-email" class="form-control" placeholder="name@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact-subject" class="form-label">Subject</label>
+                                <input type="text" id="contact-subject" class="form-control" placeholder="Subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact-message" class="form-label">Message</label>
+                                <textarea id="contact-message" class="form-control" rows="5" placeholder="Type your message here" required></textarea>
+                            </div>
+                            <button class="btn btn-primary w-100" type="submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-1">Nyumba Pap | Property, Land and Building Materials Agent</p>
+            <p class="small mb-0">Hotline: 0748073803 • WhatsApp: 0791582961 • Email: info@dabukohrealestate.co.ke</p>
+        </div>
+    </footer>
+
+    <script>
+        function submitContactForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const subject = document.getElementById('contact-subject').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+            window.location.href = `mailto:info@dabukohrealestate.co.ke?subject=${encodeURIComponent(subject)}&body=${body}`;
+        }
+    </script>
+    <script src="Styles/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

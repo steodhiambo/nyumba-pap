@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-page="accountant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Accountant dashboard for Nyumba Pap / Dabukoh Real Estate. Manage bills, sales records, and financial transactions.">
+    <meta property="og:title" content="Accountant Dashboard | Nyumba Pap">
+    <meta property="og:description" content="Manage bills, sales records, and financial transactions.">
+    <meta property="og:type" content="website">
+    <title>Accountant Dashboard | Nyumba Pap</title>
+    <link rel="stylesheet" href="Styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Nyumba Pap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navAccountant" aria-controls="navAccountant" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navAccountant">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="manager.html">Manager</a></li>
+                    <li class="nav-item"><a class="nav-link" href="forgot-password.html">Forgot Password</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <!-- Accountant Login Form -->
+        <div class="row gy-4 accountant-login-card">
+            <div class="col-lg-6 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Accountant Login</h3>
+                        <p class="text-muted">Sign in to manage bills, clear payments, and track sales records.</p>
+                        <div id="accountant-login-alert" class="alert-placeholder"></div>
+                        <form id="accountant-login-form">
+                            <div class="mb-3">
+                                <label for="accountant-email" class="form-label">Email</label>
+                                <input type="email" id="accountant-email" class="form-control" placeholder="accountant@nyumbapap.co.ke" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="accountant-password" class="form-label">Password</label>
+                                <input type="password" id="accountant-password" class="form-control" placeholder="Enter password" required>
+                            </div>
+                            <button class="btn btn-primary w-100" type="submit">Sign In</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accountant Dashboard (hidden until login) -->
+        <div class="accountant-dashboard d-none">
+            <div class="text-center mb-5">
+                <h1 class="fw-bold">Accountant Dashboard</h1>
+                <p class="text-muted">Manage bills, record sales, and track financial transactions.</p>
+                <button class="btn btn-outline-danger btn-sm" onclick="accountantLogout()">Logout</button>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-primary shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Bills</h5>
+                            <p class="display-6 fw-bold" id="total-bills-count">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-success shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Cleared Bills</h5>
+                            <p class="display-6 fw-bold" id="cleared-bills-count">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-warning shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Pending Bills</h5>
+                            <p class="display-6 fw-bold" id="pending-bills-count">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-info shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Sales</h5>
+                            <p class="display-6 fw-bold" id="total-sales-amount">KSh 0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Sales Trend</h4>
+                            <div id="accountant-sales-graph" class="sales-graph"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Manager Reports</h4>
+                            <div id="accountant-reports"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Record Sales Transaction</h4>
+                            <p class="text-muted">Add a new sale record to the system.</p>
+                            <div id="sales-alert" class="alert-placeholder"></div>
+                            <form id="sales-form">
+                                <div class="mb-3">
+                                    <label class="form-label" for="sales-item">Item Sold</label>
+                                    <input type="text" id="sales-item" class="form-control" placeholder="e.g., Sand, Building Plot, Rent Payment" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="sales-buyer">Buyer / Tenant</label>
+                                    <input type="text" id="sales-buyer" class="form-control" placeholder="Name of buyer" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="sales-amount">Amount (KSh)</label>
+                                    <input type="number" id="sales-amount" class="form-control" placeholder="0" step="0.01" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="sales-method">Payment Method</label>
+                                    <select id="sales-method" class="form-select" required>
+                                        <option value="">Select method</option>
+                                        <option value="M-Pesa">M-Pesa</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Bank Transfer">Bank Transfer</option>
+                                        <option value="Cheque">Cheque</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-success w-100" type="submit">Record Sale</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Add / Clear Bill</h4>
+                            <p class="text-muted">Track and clear bills and invoices.</p>
+                            <div id="bill-alert" class="alert-placeholder"></div>
+                            <form id="bill-form">
+                                <div class="mb-3">
+                                    <label class="form-label" for="bill-description">Bill Description</label>
+                                    <input type="text" id="bill-description" class="form-control" placeholder="e.g., Monthly rent, Office supplies" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="bill-vendor">Vendor / Service Provider</label>
+                                    <input type="text" id="bill-vendor" class="form-control" placeholder="Name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="bill-amount">Amount (KSh)</label>
+                                    <input type="number" id="bill-amount" class="form-control" placeholder="0" step="0.01" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="bill-status">Status</label>
+                                    <select id="bill-status" class="form-select" required>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Cleared">Cleared</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary w-100" type="submit">Add Bill</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-4">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Recent Sales Records</h4>
+                            <div id="sales-records"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Bills List</h4>
+                            <div id="bills-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="Styles/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="Script/script.js"></script>
+</body>
+</html>

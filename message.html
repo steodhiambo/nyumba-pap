@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-page="message">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Send a message to Dabukoh Real Estate Company Ltd. Enquire about properties, rentals, or building materials in Kisumu.">
+    <meta property="og:title" content="Message Us | Dabukoh Real Estate">
+    <meta property="og:description" content="Send a message to Dabukoh Real Estate about properties or building materials.">
+    <meta property="og:type" content="website">
+    <title>Message Us | Dabukoh Real Estate</title>
+    <link rel="stylesheet" href="Styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Dabukoh Real Estate</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMessage" aria-controls="navMessage" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMessage">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="message.html">Message Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Accounts</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="landlord.html">Landlord Login</a></li>
+                            <li><a class="dropdown-item" href="tenant.html">Tenant Signup</a></li>
+                            <li><a class="dropdown-item" href="manager.html">Manager Dashboard</a></li>
+                            <li><a class="dropdown-item" href="accountant.html">Accountant Dashboard</a></li>
+                            <li><a class="dropdown-item" href="forgot-password.html">Forgot Password</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section text-white text-center d-flex align-items-center" style="background-image: url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80'); min-height: 55vh;">
+        <div class="container py-5">
+            <h1 class="display-5 fw-bold">Message Us Directly</h1>
+            <p class="lead mt-3">Send a quick request to our team for property listings, transport, or material delivery.</p>
+            <a class="btn btn-primary btn-lg mt-4" href="contact.html">Contact Details</a>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <section class="row gx-4 gy-4 mb-5">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">WhatsApp</h5>
+                        <p class="text-muted">Send a message directly to our support line.</p>
+                        <a class="btn btn-success" href="https://wa.me/254791582961?text=Hello%20Dabukoh%20Real%20Estate,%20I%20need%20help%20with..." target="_blank">Send WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Call Hotline</h5>
+                        <p class="text-muted">Speak with our team immediately for urgent support.</p>
+                        <a class="btn btn-outline-primary" href="tel:+254748073803">Call Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Email</h5>
+                        <p class="text-muted">Send a full request and we’ll reply to your inbox.</p>
+                        <a class="btn btn-outline-secondary" href="mailto:info@dabukohrealestate.co.ke">Email Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Write a Message</h3>
+                        <form id="message-form" onsubmit="sendWhatsAppMessage(event)">
+                            <div class="mb-3">
+                                <label for="message-name" class="form-label">Your Name</label>
+                                <input type="text" id="message-name" class="form-control" placeholder="Full name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-content" class="form-label">Message</label>
+                                <textarea id="message-content" class="form-control" rows="5" placeholder="Tell us what you need" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="card assistant-card p-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <strong>AI Assistant</strong>
+                                        <button id="assistant-ask" class="btn btn-sm btn-outline-secondary">Suggest Replies</button>
+                                    </div>
+                                    <div id="assistant-suggestions" class="list-group" style="max-height: 150px; overflow:auto;"></div>
+                                    <small class="text-muted">Click a suggestion to insert into your message.</small>
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2 flex-column flex-sm-row">
+                                <button class="btn btn-success flex-fill" type="submit">Send via WhatsApp</button>
+                                <button class="btn btn-outline-primary flex-fill" type="button" onclick="sendEmailMessage()">Send via Email</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-1">Nyumba Pap | Property, Land and Building Materials Agent</p>
+            <p class="small mb-0">Hotline: 0748073803 • WhatsApp: 0791582961 • Email: info@dabukohrealestate.co.ke</p>
+        </div>
+    </footer>
+
+    <script>
+        function sendWhatsAppMessage(event) {
+            event.preventDefault();
+            const name = document.getElementById('message-name').value.trim();
+            const message = document.getElementById('message-content').value.trim();
+            if (!name || !message) return;
+            const text = `Hello Dabukoh Real Estate, my name is ${name}. ${message}`;
+            window.open(`https://wa.me/254791582961?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function sendEmailMessage() {
+            const name = document.getElementById('message-name').value.trim();
+            const message = document.getElementById('message-content').value.trim();
+            if (!name || !message) {
+                alert('Please fill in your name and message before sending an email.');
+                return;
+            }
+            const body = `Name: ${name}%0D%0A%0D%0A${encodeURIComponent(message)}`;
+            window.location.href = `mailto:info@dabukohrealestate.co.ke?subject=${encodeURIComponent('Website Message')}&body=${body}`;
+        }
+    </script>
+    <script src="Styles/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="Script/script.js"></script>
+</body>
+</html>
+

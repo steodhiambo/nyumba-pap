@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-page="landlord">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Landlord login for Nyumba Pap / Dabukoh Real Estate. Post vacant properties and connect with tenants in Kisumu.">
+    <meta property="og:title" content="Landlord Login | Nyumba Pap">
+    <meta property="og:description" content="Post vacant properties and connect with tenants in Kisumu.">
+    <meta property="og:type" content="website">
+    <title>Landlord Login | Nyumba Pap</title>
+    <link rel="stylesheet" href="Styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Nyumba Pap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLandlord" aria-controls="navLandlord" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navLandlord">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tenant.html">Tenant</a></li>
+                    <li class="nav-item"><a class="nav-link" href="manager.html">Manager</a></li>
+                    <li class="nav-item"><a class="nav-link" href="forgot-password.html">Forgot Password</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row gy-4">
+            <div class="col-lg-5">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Landlord / Property Owner Login</h3>
+                        <p class="text-muted">Sign in to post your vacant property, update contact details, and connect with tenants.</p>
+                        <div id="landlord-alert" class="alert-placeholder"></div>
+                        <form id="landlord-login-form" class="landlord-login-card">
+                            <div class="mb-3">
+                                <label for="landlord-email" class="form-label">Email</label>
+                                <input type="email" id="landlord-email" class="form-control" placeholder="you@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="landlord-password" class="form-label">Password</label>
+                                <input type="password" id="landlord-password" class="form-control" placeholder="Enter password" required>
+                            </div>
+                            <button class="btn btn-primary w-100" type="submit">Sign In</button>
+                        </form>
+                        <div class="mt-3">
+                            <a href="forgot-password.html">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="card shadow-sm landlord-post-card d-none">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Post a Vacant Building</h3>
+                        <p class="text-muted">Share a short property listing with tenants and buyers.</p>
+                        <div id="landlord-post-alert" class="alert-placeholder"></div>
+                        <form id="landlord-post-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="post-title">Building Title</label>
+                                    <input type="text" id="post-title" class="form-control" placeholder="3-bedroom house" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="post-type">Type</label>
+                                    <select id="post-type" class="form-select">
+                                        <option value="Rental">Rental</option>
+                                        <option value="Sale">Sale</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="post-status">Status</label>
+                                    <select id="post-status" class="form-select">
+                                        <option>Vacant</option>
+                                        <option>Occupied</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="post-price">Price / Rent</label>
+                                    <input type="text" id="post-price" class="form-control" placeholder="KSh 22,000 / month" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="post-address">Property Address</label>
+                                    <input type="text" id="post-address" class="form-control" placeholder="Kisumu, Kibos Road" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="post-contact">Contact Information</label>
+                                    <input type="text" id="post-contact" class="form-control" placeholder="Phone or WhatsApp" required>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-success w-100" type="submit">Post Building</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card shadow-sm mt-4">
+                    <div class="card-body">
+                        <h4 class="card-title mb-3">Recent Listings</h4>
+                        <div id="landlord-posts"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="Script/script.js"></script>
+    <script src="Styles/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

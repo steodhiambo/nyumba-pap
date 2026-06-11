@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-page="tenant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tenant signup and login for Nyumba Pap. Find rental properties and connect with landlords in Kisumu.">
+    <meta property="og:title" content="Tenant Signup / Login | Nyumba Pap">
+    <meta property="og:description" content="Find rental properties and connect with landlords in Kisumu.">
+    <meta property="og:type" content="website">
+    <title>Tenant Signup / Login | Nyumba Pap</title>
+    <link rel="stylesheet" href="Styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Nyumba Pap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navTenant" aria-controls="navTenant" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navTenant">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="landlord.html">Landlord</a></li>
+                    <li class="nav-item"><a class="nav-link" href="manager.html">Manager</a></li>
+                    <li class="nav-item"><a class="nav-link" href="forgot-password.html">Forgot Password</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row gy-4">
+            <div class="col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Tenant Signup</h3>
+                        <p class="text-muted">Create an account to apply for rentals and contact property owners.</p>
+                        <div id="tenant-signup-alert" class="alert-placeholder"></div>
+                        <form id="tenant-signup-form">
+                            <div class="mb-3">
+                                <label class="form-label" for="tenant-name">Full Name</label>
+                                <input type="text" id="tenant-name" class="form-control" placeholder="Your name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="tenant-email">Email</label>
+                                <input type="email" id="tenant-email" class="form-control" placeholder="name@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="tenant-password">Password</label>
+                                <input type="password" id="tenant-password" class="form-control" placeholder="Create password" required>
+                            </div>
+                            <button class="btn btn-primary w-100" type="submit">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Tenant Login</h3>
+                        <p class="text-muted">Already registered? Sign in to view properties and contact landlords.</p>
+                        <div id="tenant-signin-alert" class="alert-placeholder"></div>
+                        <form id="tenant-login-form">
+                            <div class="mb-3">
+                                <label class="form-label" for="tenant-login-email">Email</label>
+                                <input type="email" id="tenant-login-email" class="form-control" placeholder="you@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="tenant-login-password">Password</label>
+                                <input type="password" id="tenant-login-password" class="form-control" placeholder="Enter password" required>
+                            </div>
+                            <button class="btn btn-success w-100" type="submit">Sign In</button>
+                        </form>
+                        <div class="mt-3">
+                            <a href="forgot-password.html">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="Script/script.js"></script>
+    <script src="Styles/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

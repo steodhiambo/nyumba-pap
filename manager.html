@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" data-page="manager">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manager dashboard for Dabukoh Real Estate. Manage properties, media, treasury, and sales reports.">
+    <meta property="og:title" content="Manager Dashboard | Dabukoh Real Estate">
+    <meta property="og:description" content="Manage properties, media, treasury, and sales reports.">
+    <meta property="og:type" content="website">
+    <title>Manager Dashboard | Dabukoh Real Estate Company Ltd</title>
+    <link rel="stylesheet" href="Styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Dabukoh Real Estate</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navManager" aria-controls="navManager" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navManager">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="message.html">Message Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="landlord.html">Landlord</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tenant.html">Tenant</a></li>
+                    <li class="nav-item"><a class="nav-link" href="accountant.html">Accountant</a></li>
+                    <li class="nav-item"><a class="nav-link" href="forgot-password.html">Forgot Password</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <!-- Manager Login / Signup -->
+        <div class="row gy-4 manager-login-card">
+            <div class="col-lg-6 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Manager Access</h3>
+                        <p class="text-muted">Use the form below to sign in or create a manager account for dashboard access.</p>
+                        <div class="d-flex justify-content-center mb-4">
+                            <div class="btn-group" role="group" aria-label="Manager auth toggle">
+                                <button class="btn btn-outline-primary active" id="manager-signin-toggle" type="button">Sign In</button>
+                                <button class="btn btn-outline-primary" id="manager-signup-toggle" type="button">Sign Up</button>
+                            </div>
+                        </div>
+                        <div id="manager-login-alert" class="alert-placeholder"></div>
+                        <div id="manager-signin-panel">
+                            <form id="manager-login-form">
+                                <div class="mb-3">
+                                    <label for="manager-email" class="form-label">Email</label>
+                                    <input type="email" id="manager-email" class="form-control" placeholder="manager@dabukoh.co.ke" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="manager-password" class="form-label">Password</label>
+                                    <input type="password" id="manager-password" class="form-control" placeholder="Enter password" required>
+                                </div>
+                                <button class="btn btn-primary w-100" type="submit">Sign In</button>
+                            </form>
+                        </div>
+                        <div id="manager-signup-panel" class="d-none">
+                            <form id="manager-signup-form">
+                                <div class="mb-3">
+                                    <label for="manager-name" class="form-label">Full Name</label>
+                                    <input type="text" id="manager-name" class="form-control" placeholder="John Manager" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="manager-signup-email" class="form-label">Email</label>
+                                    <input type="email" id="manager-signup-email" class="form-control" placeholder="manager@dabukoh.co.ke" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="manager-signup-password" class="form-label">Password</label>
+                                    <input type="password" id="manager-signup-password" class="form-control" placeholder="Create password" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="manager-signup-confirm" class="form-label">Confirm Password</label>
+                                    <input type="password" id="manager-signup-confirm" class="form-control" placeholder="Confirm password" required>
+                                </div>
+                                <button class="btn btn-success w-100" type="submit">Sign Up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manager Dashboard (hidden until login) -->
+        <div class="manager-dashboard d-none">
+            <div class="text-center mb-5">
+                <h1 class="fw-bold">Manager Dashboard</h1>
+                <p class="text-muted">Post building media, track activity, and generate sales reports.</p>
+                <button class="btn btn-outline-danger btn-sm" onclick="managerLogout()">Logout</button>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-primary shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Active Listings</h5>
+                            <p class="display-6 fw-bold" id="manager-post-count">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-success shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Media Posts</h5>
+                            <p class="display-6 fw-bold" id="manager-media-count">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-warning shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Activities</h5>
+                            <p class="display-6 fw-bold" id="manager-activity-count">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-info shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Sales</h5>
+                            <p class="display-6 fw-bold" id="manager-total-sales">KSh 0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mb-4">
+                <div class="col-lg-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Sales Trend</h4>
+                            <canvas id="manager-sales-chart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-success shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Treasury Income</h5>
+                            <p class="display-6 fw-bold" id="manager-treasury-income">KSh 0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-danger shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Treasury Expenses</h5>
+                            <p class="display-6 fw-bold" id="manager-treasury-expenses">KSh 0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-info shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Net Treasury Balance</h5>
+                            <p class="display-6 fw-bold" id="manager-treasury-balance">KSh 0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-start border-4 border-warning shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Treasury Entries</h5>
+                            <p class="display-6 fw-bold" id="manager-treasury-count">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Treasury & Accounting Microservice</h4>
+                            <p class="text-muted">Record income and expense transactions to keep treasury operations under manager control.</p>
+                            <div id="treasury-alert" class="alert-placeholder"></div>
+                            <form id="manager-treasury-form">
+                                <div class="mb-3">
+                                    <label class="form-label" for="treasury-type">Transaction Type</label>
+                                    <select id="treasury-type" class="form-select" required>
+                                        <option value="">Select type</option>
+                                        <option value="Income">Income</option>
+                                        <option value="Expense">Expense</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="treasury-category">Category</label>
+                                    <select id="treasury-category" class="form-select" required>
+                                        <option value="">Select category</option>
+                                        <option value="Rent">Rent</option>
+                                        <option value="Material">Material</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="treasury-description">Description</label>
+                                    <textarea id="treasury-description" class="form-control" rows="3" placeholder="Details of the transaction" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="treasury-amount">Amount (KSh)</label>
+                                    <input type="number" id="treasury-amount" class="form-control" placeholder="0" step="0.01" required>
+                                </div>
+                                <button class="btn btn-success w-100" type="submit">Save Transaction</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Treasury Ledger</h4>
+                            <p class="text-muted">View the latest income and expense entries recorded by the manager.</p>
+                            <div id="treasury-ledger"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Post Building Media</h4>
+                            <p class="text-muted">Upload pictures or videos of houses and buildings.</p>
+                            <div id="media-alert" class="alert-placeholder"></div>
+                            <form id="manager-media-form">
+                                <div class="mb-3">
+                                    <label class="form-label" for="media-title">Building Title</label>
+                                    <input type="text" id="media-title" class="form-control" placeholder="3-bedroom house near Kibos Road" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="media-location">Location</label>
+                                    <input type="text" id="media-location" class="form-control" placeholder="Address or area" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="media-type">Media Type</label>
+                                    <select id="media-type" class="form-select" required>
+                                        <option value="">Select type</option>
+                                        <option value="Picture">Picture</option>
+                                        <option value="Video">Video</option>
+                                        <option value="Tour">Virtual Tour</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="media-url">Picture/Video URL</label>
+                                    <input type="url" id="media-url" class="form-control" placeholder="https://example.com/image.jpg" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="media-description">Description</label>
+                                    <textarea id="media-description" class="form-control" rows="3" placeholder="Details about the property"></textarea>
+                                </div>
+                                <button class="btn btn-success w-100" type="submit">Post Media</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Sales & Activity Report</h4>
+                            <div id="manager-report-alert" class="alert-placeholder"></div>
+                            <form id="manager-report-form">
+                                <div class="mb-3">
+                                    <label class="form-label" for="report-title">Report Title</label>
+                                    <input type="text" id="report-title" class="form-control" placeholder="May sales summary" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="report-details">Details</label>
+                                    <textarea id="report-details" class="form-control" rows="5" placeholder="Summary of activities, sales, and tenant status" required></textarea>
+                                </div>
+                                <button class="btn btn-primary w-100" type="submit">Save Report</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-4">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Activity Log</h4>
+                            <ul class="list-group list-group-flush" id="activity-log"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Saved Reports</h4>
+                            <div id="manager-reports"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mt-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Building Media Gallery</h4>
+                    <div id="media-gallery" class="row g-3"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="Styles/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="Script/script.js"></script>
+</body>
+</html>

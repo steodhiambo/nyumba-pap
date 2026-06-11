@@ -1,0 +1,190 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at top left, #eff6ff 0%, #dbeafe 50%, #e0f2fe 100%);
+    color: #1f2937;
+}
+
+.hero-section {
+    min-height: 72vh;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+    box-shadow: inset 0 0 0 1000px rgba(30, 64, 175, 0.22);
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.65), rgba(37, 99, 235, 0.65));
+    z-index: 0;
+}
+
+.hero-section .container,
+.hero-section .hero-card,
+.hero-section h1,
+.hero-section p {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-card {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 22px 45px rgba(15, 23, 42, 0.12);
+}
+
+footer {
+    font-size: 0.95rem;
+}
+
+.card {
+    border-radius: 1rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(250,249,255,0.95) 100%);
+    border: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.card h5 {
+    margin-top: 0.75rem;
+}
+
+.card .card-footer {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background: rgba(247, 250, 255, 0.95);
+}
+
+section#services {
+    background: linear-gradient(180deg, #e0efff 0%, #dbeafe 100%);
+}
+
+section#materials {
+    background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 100%);
+}
+
+section#about {
+    background: linear-gradient(180deg, #dbecff 0%, #e0f2fe 100%);
+}
+
+section#crushers,
+section#testimonials {
+    background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+section#testimonials .card {
+    background: linear-gradient(180deg, #ffffff 0%, #fcf4ff 100%);
+}
+
+.badge {
+    background: #0ea5e9;
+    color: white;
+}
+
+.navbar {
+    background: #000000;
+}
+
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #f8f9fa;
+}
+
+.btn-primary {
+    background: #4f46e5;
+    border-color: #4338ca;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: #4338ca;
+    border-color: #3730a3;
+}
+
+.btn-outline-primary {
+    color: #4f46e5;
+    border-color: #4f46e5;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background: rgba(79, 70, 229, 0.1);
+}
+
+.btn-outline-secondary {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.btn-outline-light {
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.85);
+}
+
+.btn-outline-light:hover,
+.btn-outline-light:focus {
+    background: rgba(255,255,255,0.18);
+}
+
+.d-grid .btn {
+    min-width: 110px;
+}
+
+.ratio iframe {
+    border: 0;
+}
+
+.materials-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.section-title {
+    letter-spacing: 0.02em;
+}
+
+.form-section {
+    max-width: 680px;
+    margin: auto;
+}
+
+.alert-placeholder {
+    min-height: 60px;
+}
+
+.property-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 767px) {
+    .hero-section {
+        min-height: auto;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
